@@ -1,0 +1,82 @@
+{% extends 'layouts/layout.html' %}
+{% block content %}
+{% load static %}
+
+
+<body>
+    
+    <main>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href=""><img src="{% static 'banner1.jpg' %}"
+                        class="carrusel d-block w-100" alt="banner1"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href=""><img src="{% static 'banner2.jpg' %}"
+                        class="carrusel d-block w-100" alt="banner2"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href=""></a><img src="{% static 'banner3.jpg' %}"
+                        class="carrusel d-block w-100" alt="banner2"></a>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+        <h2 class="pt-4">Disfruta nuestras ofertas</h2>
+        <div class="Tarjetas">
+
+            {% for product in products %}
+            {% if product.featured %}
+            {% else %}
+            <div class="card">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="imagen de la tarjeta">
+                <div class="card-body">
+                    <b class="card-title">{{ product.title }}</b>
+                    {% if user.is_authenticated == False %}
+                    <a href="{% url 'signup' %}" class="boton btn btn-primary">Comprar</a>
+                    {% else %}
+                    <a href="{% url 'product_details' product.id %}" class="boton btn btn-primary">Comprar</a>
+            
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <h2>Productos destacados</h2>
+        <div class="galeria2">
+            {% for product in products %}
+            {% if product.featured %}
+            <div class="foto2">
+                <a  href=""><img src="{{ product.image.url }}" alt="s"></a>
+                {% if user.is_authenticated == False %}
+                    <div class="pie2">
+                        <b><a href="{% url 'signup' %}" class="productos">{{ product.title }}</a></b>
+                    </div>
+                    {% else %}
+                    <div class="pie2">
+                        <b><a href="{% url 'product_details' product.id %}" class="productos">{{ product.title }}</a></b>
+                    </div>
+                    {% endif %}
+                
+
+            </div>
+            {% else %}
+            {% endif %}
+            {% endfor %}
+
+        </div>
+        <hr>
+    </main>
+
+
+{% endblock %}

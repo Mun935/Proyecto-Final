@@ -1,0 +1,33 @@
+{% load static %}
+
+<header class="encabezado1">
+    <a href="{% url 'index' %}" class="logo"><img src="{% static 'mercado-liebre.png' %}" alt=""></a>
+    <a href="{% url 'index' %}" class="logo2"><img src="{% static 'favicon.png' %}" alt=""></a>
+
+    <div>
+        <input class="barra" type="text" placeholder="Estoy buscando...">
+        <a href=""><i class="buscador fa fa-search"></i></a>
+    </div>
+
+   <nav class="header-nav">
+        <a href="registro.html" class="header-link3"><i class="user fa-solid fa-user"></i></a>
+        <a href="" class="header-link3"><i class="carrito fa-solid fa-cart-shopping"></i></a>
+        <a href="" class="header-link">Todas las opiniones en un solo lugar</a>
+        
+    </nav> 
+</header>
+<header class="encabezado2">
+    <nav class="header2-nav">
+        <a href="" class="header-link">Todos los productos</a>
+    </nav>
+    <nav class="header2-nav">
+        {% if user.is_authenticated == False %}
+        <a href="{% url 'signup' %}"><button class="boton" data-bs-toggle="modal" data-bs-target="#dialogo1"><i class="user fa-solid fa-user"></i>Creá tu cuenta</button></a>
+        
+        {% else %}
+            <a href="{% url 'logout' %}" class="header-link2"><i class="user fa-solid fa-user"></i>Cerrar sesion</a>
+            
+        {% endif %}
+        <a href="" class="header-link2"><i class="carrito fa-solid fa-cart-shopping"></i> Carrito</a>
+    </nav>
+</header>

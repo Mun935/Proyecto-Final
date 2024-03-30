@@ -1,0 +1,35 @@
+{% extends 'layouts/layout.html' %}
+
+{% block content %}
+<main class="signup container-fluid">
+    <div class="row">
+        <div class="signug-form">
+            <form action="/signup/" method="POST" ">
+                <h1 class="text-center">Crea tu cuenta</h1>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username">Usuario:</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Escriba su usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password1">Constraseña:</label>
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="Escriba su constraseña" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password2">Confirme su Constraseña:</label>
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Reescriba su constraseña" required>
+                </div>
+                
+                <button class="button">Crear cuenta</button>
+                <p class="p-signup">{{message}}</p>
+            </form>
+            <p class="text-center p-1 font-color2" style="font-size: large; font-weight: 400;">Ya tenes una cuenta? <a style=" font-weight: 600;" class="font-color " href="{% url 'signin' %}">Iniciar sesion</a></p>
+            
+            
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}
+
